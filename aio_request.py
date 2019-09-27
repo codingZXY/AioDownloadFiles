@@ -16,7 +16,7 @@ MAX_RETRY_TIMES = 3
 # 是否使用代理
 USE_PROXY = False
 # 请求超时
-TIME_OUT = 10
+TIME_OUT = 300
 
 # 响应格式
 Response = namedtuple("Response", ["status", "source"])

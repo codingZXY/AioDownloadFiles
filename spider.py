@@ -9,6 +9,7 @@ from aio_request import AioRequest
 from lxml import etree
 from setting import *
 from urllib.parse import unquote
+from list_spider import ListSpider
 
 class Spider(AioRequest):
     def __init__(self, task_type, max_page):
@@ -194,11 +195,9 @@ class Spider(AioRequest):
         self.save_json()
 
 
-
-
-
 if __name__ == '__main__':
-    print('任务类型\n0:申报通知\n1:立项公告\n2:管理文件\n3:表格模板')
+    task_types = ['0','1','2','3','99']
+    print('任务类型\n0:申报通知\n1:立项公告\n2:管理文件\n3:表格模板\n99:全部列表')
     print('\n输入exit退出程序...')
 
     while 1:
@@ -206,18 +205,22 @@ if __name__ == '__main__':
         if task_type == 'exit':
             break
 
-        if task_type not in TASK_TYPE_NAME.keys():
+        if task_type not in task_types:
             print('任务类型不存在,请重新选择')
             continue
 
-        max_page = input('请选择最大页数:')
-        try:
-            max_page = int(max_page)
-        except:
-            print('最大页数必须为整数,请重新选择')
-            continue
+        if task_type == '99':
+            s = ListSpider(['0','1','2','3'])
+            s.start()
+        else:
+            max_page = input('请选择最大页数:')
+            try:
+                max_page = int(max_page)
+            except:
+                print('最大页数必须为整数,请重新选择')
+                continue
 
-        s = Spider(task_type,max_page)
-        s.start()
+            s = Spider(task_type,max_page)
+            s.start()
 
 

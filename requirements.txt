@@ -4,7 +4,7 @@ altgraph==0.16.1
 async-retrying==0.2.2
 async-timeout==3.0.1
 attrs==19.1.0
-certifi==2019.9.11
+certifi==2022.12.7
 chardet==3.0.4
 future==0.17.1
 idna==2.8
